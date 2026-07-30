@@ -7,10 +7,6 @@
   <title>VRtueux - Expérience immersive</title>
 
   <style>  
-    /* =========================  
-       COULEURS PRINCIPALES  
-    ========================= */
-
     :root {  
       --noir: #181518;  
       --bleu: #0728bf;  
@@ -20,10 +16,6 @@
       --blanc: #f4f7ff;  
       --gris: #a6a9bd;  
     }
-
-    /* =========================  
-       RÉGLAGES GÉNÉRAUX  
-    ========================= */
 
     * {  
       margin: 0;  
@@ -37,9 +29,10 @@
 
     body {  
       min-height: 100vh;  
-      overflow-x: hidden;
-
+      overflow-x: hidden;  
       color: var(--blanc);  
+      font-family: Arial, sans-serif;
+
       background:  
         radial-gradient(  
           circle at 10% 10%,  
@@ -53,14 +46,11 @@
         ),  
         var(--noir);
 
-      font-family: Arial, sans-serif;
-
       transition:  
         background 0.8s ease,  
         color 0.8s ease;  
     }
 
-    /* Grille futuriste */  
     body::before {  
       content: "";
 
@@ -106,14 +96,11 @@
       background: rgba(24, 21, 24, 0.85);  
       border-bottom: 1px solid rgba(33, 196, 241, 0.3);
 
-      backdrop-filter: blur(15px);
-
-      transition: 0.8s ease;  
+      backdrop-filter: blur(15px);  
     }
 
     .logo {  
-      color: white;
-
+      color: white;  
       font-size: 1.5rem;  
       font-weight: bold;  
       letter-spacing: 0.15em;
@@ -176,6 +163,7 @@
     .bouton-blocs {  
       padding: 10px 15px;
 
+      color: white;  
       background: linear-gradient(  
         135deg,  
         #3d8b28,  
@@ -187,7 +175,6 @@
       font-size: 0.8rem;  
     }
 
-    /* Bouton visible uniquement en mode Minecraft */  
     .bouton-vr {  
       display: none;
 
@@ -214,7 +201,7 @@
     }
 
     /* =========================  
-       PAGE D'ACCUEIL  
+       ACCUEIL  
     ========================= */
 
     .hero {  
@@ -286,7 +273,7 @@
     }
 
     /* =========================  
-       PORTAIL CENTRAL  
+       PORTAIL  
     ========================= */
 
     .portal {  
@@ -342,11 +329,6 @@
       z-index: 2;
 
       background:  
-        radial-gradient(  
-          circle at 40% 35%,  
-          white 0 2%,  
-          transparent 3%  
-        ),  
         linear-gradient(  
           135deg,  
           var(--cyan),  
@@ -361,6 +343,73 @@
         inset 0 0 35px white;
 
       animation: tourner-carre 10s linear infinite;  
+    }
+
+    /* Petit point cliquable */  
+    .point-gg {  
+      position: absolute;  
+      top: 30%;  
+      left: 40%;  
+      z-index: 10;
+
+      width: 24px;  
+      height: 24px;  
+      padding: 0;
+
+      color: white;  
+      background: white;  
+      border: 3px solid white;  
+      border-radius: 50%;
+
+      cursor: pointer;
+
+      box-shadow:  
+        0 0 8px white,  
+        0 0 18px white;
+
+      transition:  
+        background 0.4s ease,  
+        border-color 0.4s ease,  
+        box-shadow 0.4s ease,  
+        transform 0.4s ease;  
+    }
+
+    .point-gg:hover {  
+      transform: scale(1.3);  
+    }
+
+    .point-gg.clique {  
+      background: #777;  
+      border-color: #cfcfcf;
+
+      box-shadow:  
+        0 0 8px #777,  
+        0 0 18px #777;
+
+      cursor: default;  
+    }
+
+    .message-gg {  
+      position: absolute;  
+      top: 12%;  
+      left: 50%;  
+      z-index: 15;
+
+      display: none;
+
+      color: #d0d0d0;  
+      font-size: 2rem;  
+      font-weight: bold;  
+      text-shadow:  
+        0 0 10px white,  
+        0 0 25px #888;
+
+      transform: translateX(-50%);  
+      animation: apparition-gg 0.7s ease-out forwards;  
+    }
+
+    .message-gg.visible {  
+      display: block;  
     }
 
     .portal-label {  
@@ -380,7 +429,7 @@
     }
 
     /* =========================  
-       SECTIONS ET CARTES  
+       CARTES  
     ========================= */
 
     section {  
@@ -425,8 +474,7 @@
     }
 
     .carte:hover {  
-      transform: translateY(-8px);
-
+      transform: translateY(-8px);  
       border-color: var(--cyan);  
       box-shadow: 0 0 25px rgba(33, 196, 241, 0.4);  
     }
@@ -474,7 +522,8 @@
       text-transform: uppercase;  
     }
 
-    .question-buttons {  
+    .question-buttons,  
+    .boutons-finale {  
       display: flex;  
       justify-content: center;  
       flex-wrap: wrap;  
@@ -521,7 +570,7 @@
       color: #ff3838;  
       text-shadow:  
         0 0 8px #ff0000,  
-        2px 2px 0 #000000;  
+        2px 2px 0 #000;  
     }
 
     .pourquoi-box {  
@@ -561,8 +610,7 @@
     }
 
     .bouton-envoyer {  
-      margin-top: 14px;
-
+      margin-top: 14px;  
       color: white;  
       background: #690000;  
       border-color: #ff3838;  
@@ -572,9 +620,30 @@
        PAGE FORÊT  
     ========================= */
 
-    .page-foret {  
-      display: none;
+    .page-foret,  
+    .derniere-question {  
+      display: none;  
+    }
 
+    body.mode-foret .hero,  
+    body.mode-foret #experience,  
+    body.mode-foret #question,  
+    body.mode-foret #contact,  
+    body.mode-foret footer,  
+    body.mode-finale .hero,  
+    body.mode-finale #experience,  
+    body.mode-finale #question,  
+    body.mode-finale #contact,  
+    body.mode-finale footer {  
+      display: none;  
+    }
+
+    body.mode-foret .page-foret,  
+    body.mode-finale .derniere-question {  
+      display: block;  
+    }
+
+    .page-foret {  
       min-height: 100vh;  
       padding: 150px 7% 80px;
 
@@ -592,18 +661,6 @@
           #1d4a24 12px,  
           #1d4a24 25px  
         );  
-    }
-
-    body.mode-foret .hero,  
-    body.mode-foret #experience,  
-    body.mode-foret #question,  
-    body.mode-foret #contact,  
-    body.mode-foret footer {  
-      display: none;  
-    }
-
-    body.mode-foret .page-foret {  
-      display: block;  
     }
 
     .page-foret h2,  
@@ -635,8 +692,7 @@
     .case-foret {  
       aspect-ratio: 1;
 
-      color: #d8ffb0;
-
+      color: #d8ffb0;  
       background:  
         linear-gradient(  
           135deg,  
@@ -667,8 +723,6 @@
     ========================= */
 
     .derniere-question {  
-      display: none;
-
       min-height: 100vh;  
       padding: 180px 7% 80px;
 
@@ -681,25 +735,6 @@
           transparent 35%  
         ),  
         #090000;  
-    }
-
-    body.mode-finale .hero,  
-    body.mode-finale #experience,  
-    body.mode-finale #question,  
-    body.mode-finale #contact,  
-    body.mode-finale footer {  
-      display: none;  
-    }
-
-    body.mode-finale .derniere-question {  
-      display: block;  
-    }
-
-    .boutons-finale {  
-      display: flex;  
-      justify-content: center;  
-      flex-wrap: wrap;  
-      gap: 20px;  
     }
 
     .bouton-horreur {  
@@ -760,7 +795,7 @@
     }
 
     /* =========================  
-       CONTACT ET PIED DE PAGE  
+       CONTACT  
     ========================= */
 
     .contact {  
@@ -874,7 +909,8 @@
     }
 
     body.mode-horreur .logo {  
-      color: #ff2b2b;  
+      color: #ff2b2b;
+
       text-shadow:  
         0 0 8px #ff0000,  
         3px 3px 0 #240000;  
@@ -1030,6 +1066,11 @@
         0 0 30px #7ac943;  
     }
 
+    body.mode-blocs .point-gg {  
+      background: #777;  
+      border-color: #aaa;  
+    }
+
     /* =========================  
        ANIMATIONS  
     ========================= */
@@ -1064,6 +1105,18 @@
       }  
     }
 
+    @keyframes apparition-gg {  
+      from {  
+        opacity: 0;  
+        transform: translateX(-50%) scale(0.4);  
+      }
+
+      to {  
+        opacity: 1;  
+        transform: translateX(-50%) scale(1);  
+      }  
+    }
+
     @keyframes explosion {  
       0% {  
         transform: translate(-50%, -50%) scale(0.2);  
@@ -1084,7 +1137,7 @@
     }
 
     /* =========================  
-       VERSION MOBILE  
+       MOBILE  
     ========================= */
 
     @media (max-width: 800px) {  
@@ -1160,7 +1213,7 @@
     </nav>  
   </header>
 
-  <!-- Bouton de retour au thème VR -->
+  <!-- Bouton pour revenir au thème VR -->
 
   <button  
     id="boutonVr"  
@@ -1217,12 +1270,32 @@
         </div>  
       </div>
 
-      <div class="portal">  
-        <div class="portal-core"></div>
+      <!-- Portail avec point cliquable -->
+
+      <div class="portal">
+
+        <div class="portal-core">
+
+          <button  
+            id="pointGG"  
+            class="point-gg"  
+            aria-label="Cliquer sur le point"  
+          >  
+          </button>
+
+        </div>
+
+        <div  
+          id="messageGG"  
+          class="message-gg"  
+        >  
+          GG 🎉  
+        </div>
 
         <div class="portal-label">  
-          Connexion immersive  
-        </div>  
+          Clic sur le petit point ! 
+        </div>
+
       </div>
 
     </section>
@@ -1509,6 +1582,12 @@
     const boutonJadore =  
       document.getElementById("boutonJadore");
 
+    const pointGG =  
+      document.getElementById("pointGG");
+
+    const messageGG =  
+      document.getElementById("messageGG");
+
     const raison =  
       document.getElementById("raison");
 
@@ -1529,7 +1608,19 @@
 
 
     /* =========================  
-       FONCTION POUR CHANGER DE PAGE  
+       POINT GG  
+    ========================= */
+
+    pointGG.addEventListener("click", function () {  
+      pointGG.classList.add("clique");  
+      messageGG.classList.add("visible");
+
+      pointGG.disabled = true;  
+    });
+
+
+    /* =========================  
+       CHANGER DE PAGE  
     ========================= */
 
     function changerDePage(nouveauMode) {  
@@ -1566,7 +1657,7 @@
 
 
     /* =========================  
-       BOUTON VRTUEUX  
+       RETOUR AU THÈME VR  
     ========================= */
 
     boutonVr.addEventListener("click", function () {  
@@ -1593,7 +1684,7 @@
 
     /* =========================  
        RÉPONSE NON  
-       La position de la page est conservée.  
+       La position reste inchangée.  
     ========================= */
 
     boutonNon.addEventListener("click", function () {  
@@ -1610,14 +1701,14 @@
       pourquoiBox.style.display = "block";
 
       /*  
-        Il n'y a volontairement aucun window.scrollTo ici.  
-        La page reste donc exactement à la même position.  
+        Aucun window.scrollTo ici :  
+        la page ne remonte pas en haut.  
       */  
     });
 
 
     /* =========================  
-       BOUTON CONTINUER  
+       CONTINUER VERS LA FORÊT  
     ========================= */
 
     boutonEnvoyer.addEventListener("click", function () {  
@@ -1670,9 +1761,9 @@
       changerDePage("mode-defaite");
 
       /*  
-        Les navigateurs empêchent souvent  
+        Les navigateurs bloquent souvent  
         la fermeture automatique d'une page.  
-        L'écran de défaite reste donc affiché.  
+        L'écran de défaite reste donc visible.  
       */  
     }
 
